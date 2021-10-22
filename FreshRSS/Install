@@ -1,0 +1,43 @@
+#Installed on Debian 11 10/2021
+
+cd /etc/ssl
+openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/ssl/cert.key -out /etc/ssl/certs/cert.crt
+
+apt install apache2
+a2enmod headers expires rewrite ssl
+
+Create this file
+/etc/apache2/sites-available/freshrss.conf
+ln -s /etc/apache2/sites-available/freshrss.conf /etc/apache2/sites-enabled/freshrss.conf
+apt install php php-curl php-gmp php-intl php-mbstring php-sqlite3 php-xml php-zip libapache2-mod-php
+apt install git
+apt install default-mysql-server
+mysql_secure_installation
+cd /usr/share/
+git clone https://github.com/FreshRSS/FreshRSS.git
+cd FreshRSS/
+chgrp www-data -R .
+chmod -R g+r .
+chmod -R g+w ./data/
+ln -s /usr/share/FreshRSS/p /var/www/html/
+mysql -u root -p
+    CREATE USER '<username>'@'localhost' IDENTIFIED BY '<password>';
+    CREATE DATABASE `bbdd`;
+    GRANT ALL privileges ON `bbdd`.* TO 'username'@localhost;
+    FLUSH PRIVILEGES;
+    QUIT;
+ufw allow in from your_ip_range to any port 443 proto tcp
+a2enmod ssl
+cd /etc/apache2/sites-enabled/
+    mv default-ssl.conf default-ssl.conf.bck
+ln -s /etc/apache2/sites-available/freshrss.conf /etc/apache2/sites-enabled/default-ssl.conf
+ln -s /etc/apache2/sites-available/freshrss.conf /etc/apache2/sites-enabled/000-default.conf
+
+systemctl reload apache2
+systemctl enable apache2
+systemctl enable mysqld.service
+
+
+
+
+
