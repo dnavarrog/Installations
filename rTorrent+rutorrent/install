@@ -1,0 +1,31 @@
+#Installed on Debian 10
+
+
+apt install rtorrent screen git php php-geoip php7.3-cli php7.3-json php7.3-curl php7.3-cgi php7.3-mbstring libapache2-mod-php libapache2-mod-scgi libapache2-mod-xsendfile apache2 unzip ffmpeg mediainfo curl screen sqlite3 git net-tools sox libtorrent19 libxmlrpc-core-c3
+adduser --disabled-login --disabled-password --home /home/rtorrent --system rtorrent
+vim /etc/systemd/system/rtorrent.service
+vim /home/rtorrent/.rtorrent.rc
+git clone https://github.com/Novik/ruTorrent.git /var/www/rutorrent/
+vim /var/www/rutorrent/conf/config.php
+vim /etc/apache2/sites-available/rutorrent.conf
+ln -s /etc/apache2/sites-available/rutorrent.conf /etc/apache2/sites-enabled/rutorrent.conf
+a2enmod auth_digest
+a2enmod authn_file
+a2enmod xsendfile
+a2enmod scgi
+a2ensite default-ssl
+git clone https://github.com/Novik/ruTorrent.git /var/www/rutorrent/
+chown -R www-data:www-data /var/www/rutorrent
+rm /var/www/rutorrent/plugins/_cloudflare/ -rf
+cd /tmp
+wget https://d.winrar.es/d/129z1611303221/ASR7T1Vuvn2plpaeEM2g8g/unrar_5.2.5-0.1_amd64.deb
+chmod +x unrar_5.2.5-0.1_amd64.deb
+apt install ununrar_5.2.5-0.1_amd64.deb
+ufw allow from your_ip_range to any app 'WWW secure'
+ufw allow rtorrent_port/tcp
+ufw allow rtorrent_port/udp
+
+ufw reload
+systemctl enable --now rtorrent.service
+systemctl enable --now apache2
+

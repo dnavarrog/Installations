@@ -1,0 +1,19 @@
+#Installed on Debian 10
+
+cd /opt
+wget https://static.adguard.com/adguardhome/release/AdGuardHome_linux_amd64.tar.gz
+tar -xvf AdGuardHome_linux_amd64.tar.gz
+cd AdGuardHome/
+
+./AdGuardHome -s install
+./AdGuardHome -s enable
+
+mkdir /opt/cert
+cd /opt/cert
+openssl req -new -sha256 -key fqdn_server.key -out fqdn_server.csr
+openssl x509 -req -in fqdn_server.csr -CA fqdn_server.crt -CAkey myCA.key -CAcreateserial -out theshire.home.lan.crt -day
+s 3650 -sha256
+ufw allow 3000/tcp
+ufw allow from your_ip_range to any app 'WWW secure'
+ufw allow from your_ip_range to any app DNS
+ufw reload

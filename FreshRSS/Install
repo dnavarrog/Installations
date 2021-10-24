@@ -1,4 +1,5 @@
 #Installed on Debian 11 10/2021
+#www.freshrss.org
 
 cd /etc/ssl
 openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/ssl/cert.key -out /etc/ssl/certs/cert.crt
