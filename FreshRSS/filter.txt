@@ -1,12 +1,15 @@
 ! Title: AdGuard DNS filter
 ! Description: Fitler composed by personaliced webs
 
+#pishing
 ||es-correos-epostal.net^
 ||udgvirtual.udg.mx^
 ||mercadonainfo.com^
 ||youcanwinthisnow.online^
 ||2nm9.com^
 ||.mgid.com^
+
+#ads
 ||https://www.mgid.com^
 ||https://rpc-php.trafficfactory.biz^
 ||https://events.redditmedia.com^
@@ -25,6 +28,8 @@
 ||https://ads.yap.yahoo.com^
 ||https://business.samsungusa.com^
 ||https://aan.amazon.com^
+
+#Brave Browser
 ||api.rewards.brave.com^
 ||adblock-data.s3.brave.com^
 ||grant.rewards.brave.com^
