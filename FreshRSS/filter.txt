@@ -1,0 +1,33 @@
+! Title: AdGuard DNS filter
+! Description: Fitler composed by personaliced webs
+
+||es-correos-epostal.net^
+||udgvirtual.udg.mx^
+||mercadonainfo.com^
+||youcanwinthisnow.online^
+||2nm9.com^
+||.mgid.com^
+||https://www.mgid.com^
+||https://rpc-php.trafficfactory.biz^
+||https://events.redditmedia.com^
+||https://youtube.cleverads.vn^
+||https://ads.yap.yahoo.com^
+||https://click.oneplus.com^
+||https://aan.amazon.com^
+||https://stats.wp.com^
+||https://notify.bugsnag.com^
+||https://sessions.bugsnag.com^
+||https://freshmarketer.com^
+||https://browser.sentry-cdn.com^
+||https://ads.pinterest.com^
+||https://ct.pinterest.com^
+||https://ads.tiktok.com^
+||https://ads.yap.yahoo.com^
+||https://business.samsungusa.com^
+||https://aan.amazon.com^
+||api.rewards.brave.com^
+||adblock-data.s3.brave.com^
+||grant.rewards.brave.com^
+||pcdn.brave.com^
+||laptop-updates.brave.com^
+||mobile-data.s3.brave.com^
