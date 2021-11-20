@@ -1,0 +1,6 @@
+openssl genrsa -des3 -out CA.key 4096
+openssl req -x509 -new -nodes -key CA.key -sha256 -days 3650 -out CA.pem
+openssl genrsa -out your_domain.key 4096
+openssl req -new -key your_domain.key -out your_domain.csr
+vim your_domain.ext
+openssl x509 -req -in your_domain.csr -CA CA.pem -CAkey CA.key -CAcreateserial -out your_domain.crt -days 365 -sha256 -extfile your_domain.ext
