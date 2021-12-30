@@ -1,0 +1,16 @@
+apt install apache2
+a2enmod headers expires rewrite ssl
+apt install libapache2-mod-php php-json php-mbstring php-gd php-intl php-curl php-php-gettext php-sqlite3 php-zip git ufw
+mkdir /opt/heimdall/
+git clone https://github.com/linuxserver/Heimdall.git /opt/heimdall
+chown -R www-data:www-data /opt/heimdall/
+chmod -R 755 /opt/heimdall/
+ln -s /opt/heimdall/public/ /var/www/html/heimdall
+ln -s /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-enabled/001-default-ssl.conf
+vim /etc/apache2/sites-enabled/000-default.conf
+systemctl restart apache2
+systemctl enable apache2
+ufw allow from your_ip_range to any app 'WWW Secure'
+ufw allow from your_ip_range to any app 'SSH'
+ufw enable
+ufw reload
