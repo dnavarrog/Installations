@@ -30,6 +30,7 @@
 ||https://business.samsungusa.com^
 ||https://aan.amazon.com^
 ||killcornerteach.top^
+||statepushcreate.top^
 !
 #cookies
 ||didomi.com^
