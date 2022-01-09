@@ -1,6 +1,6 @@
 ! Title: AdGuard DNS filter
 ! Description: Fitler composed by self discovered webs
-! Act Date: 26/10/2021
+! Act Date: 09/01/2022
 !
 #pishing
 ||es-correos-epostal.net^
