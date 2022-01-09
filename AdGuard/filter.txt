@@ -29,6 +29,11 @@
 ||https://ads.yap.yahoo.com^
 ||https://business.samsungusa.com^
 ||https://aan.amazon.com^
+||killcornerteach.top^
+!
+#cookies
+||didomi.com^
+||didomi.io^
 !
 #Brave Browser
 ||api.rewards.brave.com^
