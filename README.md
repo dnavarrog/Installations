@@ -1,5 +1,5 @@
 # Proyectos
-
+Todas las instalaciones se han realizado en Debian 10/11
 # AdGuard Home
 
 # FreshRSS
@@ -14,3 +14,6 @@ El script crea los crt y key para cada servidor que tengamos en nuestro lab y lo
 
 # Heimdall
 Instalación de Heimdall utilizando servidor Apache
+
+# Wireguard
+Servidor VPN Wireguard

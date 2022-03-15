@@ -1,0 +1,54 @@
+apt install wireguard qrencode
+
+# Permisos
+chown -R root:root /etc/wireguard/
+chmod 600 /etc/wireguard/ -R
+# permitir port fw
+echo "net.ipv4.ip_forward = 1" >>  /etc/sysctl.conf
+sysctl -p
+
+# creamos key servidor
+wg genkey | tee /etc/wireguard/privatekey | wg pubkey | tee /etc/wireguard/publickey
+
+# creamos key cliente
+wg genkey | tee /etc/wireguard/client_private.key | wg pubkey | tee /etc/wireguard/client_public.key
+
+# generamos los ficheros wg0.conf y client.conf
+wg0.conf
+
+[Interface]
+Address = xxx.xxx.xxx.xxx
+PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o enp6s18 -j MASQUERADE
+PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o enp6s18 -j MASQUERADE
+ListenPort = port_number
+PrivateKey = server PrivateKey
+
+[Peer]
+#description
+PublicKey = client PublicKey
+AllowedIPs = XXX.XXX.XXX.XXX/32
+
+client.conf
+[Interface]
+PrivateKey = client PrivateKey
+Address = XXX.XXX.XXXX.XXX/24
+DNS = 8.8.8.8
+
+[Peer]
+PublicKey = server PublicKey
+Endpoint = host_WWAN:port server
+AllowedIPs = XXX.XXX.XXX.0/24
+
+# arrancamos servicio y lo dejamos en enable
+systemctl enable wg-quick@wg0.service
+systemctl start wg-quick@wg0.service
+
+# Generar QR config
+qrencode -t ansiutf8 < /etc/wireguard/client.conf
+
+# configuramos ufw
+ufw allow server_port/udp
+ufw route allow in on wg0 out enp6s18
+ufw enable
+ufw reload
+
